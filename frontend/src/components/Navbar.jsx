@@ -7,6 +7,10 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { setShowSearch, getCartCount } = useContext(ShopContext);
   const menuRef = useRef(null);
+  const isCollection = location.pathname === "/collection"
+  
+  
+
 
   // 🔥 Outside click handler
   useEffect(() => {
@@ -52,12 +56,14 @@ const Navbar = () => {
 
       {/* Right Icons */}
       <div className="flex items-center gap-6">
-        <img
+       {
+        isCollection &&  <img
           onClick={() => setShowSearch(true)}
           src={assets.search_icon}
           className="w-5 cursor-pointer"
           alt="search"
         />
+       }
 
         {/* Cart */}
         <Link to="/cart" className="relative">
