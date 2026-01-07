@@ -81,7 +81,7 @@ const Navbar = () => {
 
       <div
         ref={menuRef}
-        className={`fixed top-0 right-0 h-1/3 bg-white z-50 transition-all duration-300 ${
+        className={`fixed top-0 right-0 h-1/2 bg-white z-50 transition-all duration-300 ${
           visible ? "w-full" : "w-0"
         }`}
       >
