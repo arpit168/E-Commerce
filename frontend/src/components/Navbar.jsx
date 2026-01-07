@@ -74,8 +74,8 @@ const Navbar = () => {
           </Link>
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-500 text-gray-50 rounded">
-              <p className="cursor-pointer hover:text-black">My Profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
+              <p className="cursor-pointer hover:text-black"><a href="/profile">My Profile</a></p>
+              <p className="cursor-pointer hover:text-black"><a href="/orders">Orders</a></p>
               <p className="cursor-pointer hover:text-black">
                 <a href="/logout">Logout</a>
               </p>
@@ -91,7 +91,7 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <Link to="/login" className="relative">
+        <Link to="/login" className="relative md:flex hidden">
           {isLogin || (
             <div onClick={() => setShowSearch(true)}>
               <GoSignIn className="text-2xl hover:text-red-500" />
@@ -113,11 +113,12 @@ const Navbar = () => {
 
       <div
         ref={menuRef}
-        className={`fixed top-0 right-0 h-1/2 bg-white z-50 transition-all duration-300 ${
+        className={`fixed  top-0 right-0 h-1/2 bg-white z-50 transition-all duration-300 ${
           visible ? "w-full" : "w-0"
         }`}
       >
-        <div className="flex flex-col text-gray-600 p-3">
+        <div>
+          <div className="flex flex-col text-gray-600 p-3">
           <div
             onClick={() => setVisible(false)}
             className="flex items-center gap-4 cursor-pointer"
@@ -129,6 +130,7 @@ const Navbar = () => {
             />
             <p>Back</p>
           </div>
+          
 
           {["/", "/collection", "/about", "/contact"].map((path, i) => (
             <NavLink
@@ -139,9 +141,16 @@ const Navbar = () => {
             >
               {path === "/" ? "Home" : path.slice(1)}
             </NavLink>
-          ))}
+            ))}
+            
         </div>
+         
+        </div>
+        
+        
       </div>
+      
+     
     </div>
   );
 };
