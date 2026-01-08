@@ -13,6 +13,7 @@ import Collection from "./pages/Collection";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 import { ToastContainer, toast } from 'react-toastify';
+import NotFound from "./pages/Error";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
