@@ -40,7 +40,7 @@ const Login = () => {
         required
       />
       <div className="w-full flex justify-between text-sm mt- [-8px]">
-        <p className="cursor-pointer">Forgot your password</p>
+        <p className="cursor-pointer">Forgot password</p>
         {currentState === "Login" ? (
           <p
             onClick={() => setCurrentState("Sign Up")}
@@ -53,7 +53,7 @@ const Login = () => {
             onClick={() => setCurrentState("Login")}
             className="cursor-pointer "
           >
-            I have an accout <span className="text-blue-500 hover:text-blue-800"> Login here</span>
+            I have an accout <span className="text-blue-500 hover:text-blue-800"> Login </span>
           </p>
         )}
       </div>
