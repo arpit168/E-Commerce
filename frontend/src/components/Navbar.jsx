@@ -1,8 +1,11 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { assets } from "../assets/assets";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { GoSignIn } from "react-icons/go";
+import toast from "react-hot-toast";
+
+
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -11,7 +14,9 @@ const Navbar = () => {
   const isCollection = location.pathname === "/collection";
   const isLogin = location.pathname === "/login";
 
-  // 🔥 Outside click handler
+ 
+ 
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (visible && menuRef.current && !menuRef.current.contains(e.target)) {
@@ -74,10 +79,19 @@ const Navbar = () => {
           </Link>
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-500 text-gray-50 rounded">
-              <p className="cursor-pointer hover:text-black">My Profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
+              <div className="cursor-pointer hover:text-black">
+                <Link to="/profile">My Profile</Link>{" "}
+              </div>
               <p className="cursor-pointer hover:text-black">
-                <a href="/logout">Logout</a>
+                <Link to="/orders">Orders</Link>
+              </p>
+              <p className="cursor-pointer hover:text-black">
+                <Link
+                  to="/login"
+                 onClick={()=>toast.success("Logout SuccessFull!")}
+                >
+                  Logout
+                </Link>
               </p>
             </div>
           </div>
@@ -91,8 +105,6 @@ const Navbar = () => {
           </p>
         </Link>
 
-       
-
         {/* Mobile Menu Button */}
         <img
           onClick={() => setVisible(true)}
@@ -100,7 +112,7 @@ const Navbar = () => {
           className="w-5 cursor-pointer md:hidden"
           alt="menu"
         />
-         <Link to="/login" className="relative ">
+        <Link to="/login" className="relative ">
           {isLogin || (
             <div onClick={() => setShowSearch(true)}>
               <GoSignIn className="text-2xl hover:text-red-500" />
@@ -108,7 +120,6 @@ const Navbar = () => {
           )}
         </Link>
       </div>
-     
 
       {/* Mobile Sidebar */}
       {visible && <div className="fixed inset-0 bg-black/40 z-40"></div>}
@@ -131,7 +142,6 @@ const Navbar = () => {
             />
             <p>Back</p>
           </div>
-          
 
           {["/", "/collection", "/about", "/contact"].map((path, i) => (
             <NavLink
@@ -142,14 +152,13 @@ const Navbar = () => {
             >
               {path === "/" ? "Home" : path.slice(1)}
             </NavLink>
-            ))}
-            
+          ))}
         </div>
-        
       </div>
-     
     </div>
   );
+
 };
+
 
 export default Navbar;
